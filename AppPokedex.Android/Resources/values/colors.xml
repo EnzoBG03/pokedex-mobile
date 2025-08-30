@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="launcher_background">#FFFFFF</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+	<!-- Couleurs personnalisées pour les AlertDialog -->
+	<color name="custom_dialog_background">#FF2C2C2C</color>
+	<color name="custom_title_color">#000000</color>
+	<color name="custom_message_color">#FFCCCCCC</color>
+	<color name="custom_button_color">#DC143C</color>
+	<color name="custom_button_text_color">#DC143C</color>
+</resources>

@@ -1,0 +1,449 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppPokedex.RecherchePages.GenPages.GenPage2"
+             BackgroundColor="#DC143C">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="StatusLed" TargetType="Frame">
+                <Setter Property="WidthRequest" Value="12" />
+                <Setter Property="HeightRequest" Value="12" />
+                <Setter Property="CornerRadius" Value="6" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="HasShadow" Value="True" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <!-- Partie supérieure rouge -->
+            <BoxView Color="#DC143C" Grid.Row="0" HeightRequest="150"/>
+
+            <!-- Contenu principal -->
+            <StackLayout Padding="20" VerticalOptions="FillAndExpand">
+
+                <!-- En-tête avec titre dynamique -->
+                <StackLayout Orientation="Horizontal" 
+                             HorizontalOptions="Center"
+                             Spacing="15"
+                             Margin="0,20,0,20">
+
+                    <!-- Pokéball décorative avec couleur de génération -->
+                    <Grid WidthRequest="40" HeightRequest="40">
+                        <Frame x:Name="MainPokeball"
+                               WidthRequest="40" 
+                               HeightRequest="40"
+                               CornerRadius="20"
+                               BackgroundColor="#FF6B35"
+                               BorderColor="Transparent"
+                               HasShadow="True"
+                               Padding="0" />
+
+                        <Frame WidthRequest="26" 
+                               HeightRequest="26"
+                               CornerRadius="13"
+                               BackgroundColor="White"
+                               BorderColor="Transparent"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Padding="0" />
+
+                        <Frame WidthRequest="10" 
+                               HeightRequest="10"
+                               CornerRadius="5"
+                               BackgroundColor="#DC143C"
+                               BorderColor="Transparent"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Padding="0" />
+                    </Grid>
+
+                    <StackLayout VerticalOptions="Center">
+                        <Label x:Name="TitleLabel"
+                               Text="GÉNÉRATION I - KANTO" 
+                               FontSize="18" 
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               HorizontalTextAlignment="Center"/>
+                        <Label x:Name="RangeLabel"
+                               Text="#001 - #151" 
+                               FontSize="12" 
+                               FontAttributes="Italic"
+                               TextColor="#FFD700"
+                               HorizontalTextAlignment="Center"
+                               Opacity="0.9" />
+                    </StackLayout>
+                </StackLayout>
+
+                <!-- Panneau d'informations sur la génération -->
+                <Frame BackgroundColor="#F5F5DC" 
+                       CornerRadius="15" 
+                       Padding="15"
+                       HasShadow="True"
+                       Margin="0,0,0,15">
+
+                    <Grid ColumnDefinitions="*,*,*" RowSpacing="5">
+                        <!-- Compteur de Pokémon -->
+                        <StackLayout Grid.Column="0" HorizontalOptions="Center">
+                            <Label x:Name="CounterLabel"
+                                   Text="Chargement..."
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#2F4F4F"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Pokémon" 
+                                   FontSize="10" 
+                                   TextColor="#696969"
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+
+                        <!-- Région -->
+                        <StackLayout Grid.Column="1" HorizontalOptions="Center">
+                            <Label x:Name="RegionLabel"
+                                   Text="Kanto"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#2F4F4F"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Région" 
+                                   FontSize="10" 
+                                   TextColor="#696969"
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+
+                        <!-- Génération -->
+                        <StackLayout Grid.Column="2" HorizontalOptions="Center">
+                            <Label x:Name="GenLabel"
+                                   Text="I"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#2F4F4F"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Génération" 
+                                   FontSize="10" 
+                                   TextColor="#696969"
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+                <!-- Filtre par type (optionnel) -->
+                <Frame BackgroundColor="#E6F3FF" 
+                       CornerRadius="15" 
+                       Padding="12"
+                       HasShadow="True"
+                       Margin="0,0,0,15">
+
+                    <StackLayout Orientation="Horizontal" 
+                                 HorizontalOptions="Center"
+                                 Spacing="10">
+                        <!--<Label Text="🔍" FontSize="16" />-->
+                        <Label Text="Filtrer par type :" 
+                               FontSize="13" 
+                               FontAttributes="Bold"
+                               TextColor="#2F4F4F"
+                               VerticalOptions="Center"/>
+
+                        <Picker x:Name="TypePicker"
+                                Title="Tous les types"
+                                FontSize="12"
+                                TextColor="#2F4F4F"
+                                BackgroundColor="White"
+                                WidthRequest="120"
+                                SelectedIndexChanged="OnTypeFilterChanged">
+                            <Picker.Items>
+                                <x:String>Tous les types</x:String>
+                                <x:String>Normal</x:String>
+                                <x:String>Feu</x:String>
+                                <x:String>Eau</x:String>
+                                <x:String>Électrik</x:String>
+                                <x:String>Plante</x:String>
+                                <x:String>Glace</x:String>
+                                <x:String>Combat</x:String>
+                                <x:String>Poison</x:String>
+                                <x:String>Sol</x:String>
+                                <x:String>Vol</x:String>
+                                <x:String>Psy</x:String>
+                                <x:String>Insecte</x:String>
+                                <x:String>Roche</x:String>
+                                <x:String>Spectre</x:String>
+                                <x:String>Dragon</x:String>
+                                <x:String>Ténèbres</x:String>
+                                <x:String>Acier</x:String>
+                                <x:String>Fée</x:String>
+                            </Picker.Items>
+                        </Picker>
+
+                        <Button x:Name="ClearFilterButton"
+                                Text="❌"
+                                FontSize="12"
+                                BackgroundColor="Transparent"
+                                TextColor="#DC143C"
+                                WidthRequest="35"
+                                HeightRequest="35"
+                                CornerRadius="18"
+                                Clicked="OnClearFilterClicked" />
+                    </StackLayout>
+                </Frame>
+
+                <!-- Liste des Pokémon -->
+                <Frame BackgroundColor="#F5F5DC" 
+                       CornerRadius="15" 
+                       Padding="0"
+                       HasShadow="True"
+                       VerticalOptions="FillAndExpand">
+
+                    <Grid>
+                        <!-- Liste principale -->
+                        <CollectionView x:Name="PokemonCollectionView"
+                                        BackgroundColor="Transparent"
+                                        SelectionMode="Single"
+                                        SelectionChanged="OnPokemonSelected">
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="15,10" BackgroundColor="Transparent">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="1"/>
+                                        </Grid.RowDefinitions>
+
+                                        <!-- Contenu du Pokémon -->
+                                        <Grid Grid.Row="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="50"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- Image du Pokémon -->
+                                            <Frame Grid.Column="0"
+                                                   BackgroundColor="White"
+                                                   CornerRadius="25"
+                                                   Padding="0"
+                                                   HasShadow="False"
+                                                   WidthRequest="50"
+                                                   HeightRequest="50">
+                                                <Image Source="{Binding sprites.regular}"
+                                                       Aspect="AspectFit"
+                                                       WidthRequest="45"
+                                                       HeightRequest="45"/>
+                                            </Frame>
+
+                                            <!-- Informations du Pokémon -->
+                                            <StackLayout Grid.Column="1" 
+                                                         VerticalOptions="Center"
+                                                         Spacing="2"
+                                                         Margin="15,0,0,0">
+                                                <Label Text="{Binding name.fr}"
+                                                       FontSize="16"
+                                                       FontAttributes="Bold"
+                                                       TextColor="#2F4F4F"/>
+                                                <Label Text="{Binding name.en}"
+                                                       FontSize="12"
+                                                       TextColor="#696969"/>
+
+                                                <!-- Types du Pokémon -->
+                                                <StackLayout Orientation="Horizontal" 
+                                                             Spacing="5"
+                                                             Margin="0,3,0,0">
+                                                    <Label Text="{Binding types[0].name, StringFormat='🏷️ {0}'}"
+                                                           FontSize="10"
+                                                           TextColor="#4169E1"
+                                                           FontAttributes="Bold"/>
+                                                    <Label Text="{Binding types[1].name, StringFormat='+ {0}'}"
+                                                           FontSize="10"
+                                                           TextColor="#4169E1"
+                                                           FontAttributes="Bold"
+                                                           IsVisible="{Binding HasSecondType}"/>
+                                                </StackLayout>
+                                            </StackLayout>
+
+                                            <!-- Numéro du Pokédex -->
+                                            <Label Grid.Column="2"
+                                                   Text="{Binding pokedex_id, StringFormat='#{0:D3}'}"
+                                                   FontSize="14"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#4169E1"
+                                                   VerticalOptions="Center"/>
+
+                                            <!-- Indicateur de génération -->
+                                            <Frame Grid.Column="3"
+                                                   x:Name="GenIndicator"
+                                                   BackgroundColor="#FF6B35"
+                                                   CornerRadius="15"
+                                                   Padding="8,4"
+                                                   HasShadow="False"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center">
+                                                <Label Text="{Binding Generation, StringFormat='G{0}'}"
+                                                       FontSize="10"
+                                                       FontAttributes="Bold"
+                                                       TextColor="White"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="Center"/>
+                                            </Frame>
+                                        </Grid>
+
+                                        <!-- Séparateur -->
+                                        <BoxView Grid.Row="1"
+                                                 Color="#E0E0E0"
+                                                 HeightRequest="1"
+                                                 HorizontalOptions="FillAndExpand"
+                                                 Margin="0,10,0,0"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                        <!-- Indicateur de chargement -->
+                        <ActivityIndicator x:Name="LoadingIndicator"
+                                           IsVisible="True"
+                                           IsRunning="True"
+                                           Color="#FF6B35"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"/>
+
+                        <!-- Message d'erreur -->
+                        <StackLayout x:Name="ErrorPanel"
+                                     IsVisible="False"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Center"
+                                     Spacing="20">
+                            <Label Text="❌"
+                                   FontSize="40"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Erreur de chargement"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#DC143C"
+                                   HorizontalOptions="Center"/>
+                            <Button x:Name="RetryButton"
+                                    Text="RÉESSAYER"
+                                    BackgroundColor="#FF6B35"
+                                    TextColor="White"
+                                    CornerRadius="15"
+                                    Clicked="OnRetryClicked"/>
+                        </StackLayout>
+
+                        <!-- Message aucun résultat -->
+                        <StackLayout x:Name="NoResultPanel"
+                                     IsVisible="False"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Center"
+                                     Spacing="15">
+                            <Label Text="🔍"
+                                   FontSize="40"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Aucun Pokémon trouvé"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#696969"
+                                   HorizontalOptions="Center"/>
+                            <Label x:Name="NoResultMessage"
+                                   Text="Essayez de changer le filtre"
+                                   FontSize="12"
+                                   TextColor="#696969"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+                <!-- Barre d'état de la génération -->
+                <Frame BackgroundColor="#2F4F4F" 
+                       CornerRadius="15" 
+                       Padding="15"
+                       HasShadow="True"
+                       BorderColor="#1C3A3A"
+                       Margin="0,15,0,0">
+
+                    <Grid ColumnDefinitions="*,Auto,Auto">
+                        <!-- Informations de génération -->
+                        <StackLayout Grid.Column="0" 
+                                     Orientation="Horizontal" 
+                                     Spacing="8"
+                                     VerticalOptions="Center">
+                            <Label x:Name="GenIcon" Text="⚡" FontSize="14" />
+                            <Label Text="GEN :" 
+                                   FontSize="11" 
+                                   FontAttributes="Bold"
+                                   TextColor="White"
+                                   VerticalOptions="Center"/>
+                            <Label x:Name="StatusGenLabel"
+                                   Text="I - KANTO" 
+                                   FontSize="11" 
+                                   FontAttributes="Bold"
+                                   TextColor="#FFD700"
+                                   VerticalOptions="Center"/>
+                        </StackLayout>
+
+                        <!-- Filtre actif -->
+                        <StackLayout Grid.Column="1"
+                                     Orientation="Horizontal"
+                                     Spacing="5"
+                                     Margin="10,0,15,0"
+                                     VerticalOptions="Center">
+                            <Label Text="🏷️" FontSize="11" />
+                            <Label x:Name="ActiveFilterLabel"
+                                   Text="TOUS" 
+                                   FontSize="11" 
+                                   FontAttributes="Bold"
+                                   TextColor="#4ECDC4" />
+                        </StackLayout>
+
+                        <!-- LEDs d'état -->
+                        <StackLayout Grid.Column="2" 
+                                     Orientation="Horizontal" 
+                                     Spacing="6"
+                                     VerticalOptions="Center">
+                            <Frame Style="{StaticResource StatusLed}"
+                                   x:Name="StatusLed1"
+                                   BackgroundColor="#32CD32" />
+                            <Frame Style="{StaticResource StatusLed}"
+                                   x:Name="StatusLed2"
+                                   BackgroundColor="#FFD700" />
+                            <Frame Style="{StaticResource StatusLed}"
+                                   x:Name="StatusLed3"
+                                   BackgroundColor="#FF6B35" />
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+                <!-- Navigation -->
+                <StackLayout Orientation="Horizontal" 
+                             HorizontalOptions="Center"
+                             Spacing="20"
+                             Margin="0,15,0,0">
+                    <Button x:Name="BackButton"
+                            Text="← RETOUR" 
+                            BackgroundColor="#696969"
+                            TextColor="White"
+                            FontSize="14"
+                            FontAttributes="Bold"
+                            CornerRadius="15"
+                            WidthRequest="110"
+                            HeightRequest="40"
+                            Clicked="OnBackClicked"/>
+
+                    <Button x:Name="InfoButton"
+                            Text="ℹ️ INFO" 
+                            BackgroundColor="Transparent"
+                            TextColor="White"
+                            BorderColor="White"
+                            BorderWidth="2"
+                            FontSize="14"
+                            FontAttributes="Bold"
+                            CornerRadius="15"
+                            WidthRequest="100"
+                            HeightRequest="40"
+                            Clicked="OnInfoClicked"/>
+                </StackLayout>
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

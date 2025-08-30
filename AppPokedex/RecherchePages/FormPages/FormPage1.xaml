@@ -1,0 +1,404 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppPokedex.RecherchePages.FormPages.FormPage1"
+             BackgroundColor="#DC143C">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Styles modernes pour les boutons -->
+            <Style x:Key="ModernFormButton" TargetType="Button">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" Value="25" />
+                <Setter Property="HeightRequest" Value="65" />
+                <Setter Property="Margin" Value="0,8,0,8" />
+            </Style>
+
+            <Style x:Key="FormDescription" TargetType="Label">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="#696969" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,5,0,15" />
+                <Setter Property="FontAttributes" Value="Italic" />
+            </Style>
+
+            <Style x:Key="StatusLed" TargetType="Frame">
+                <Setter Property="WidthRequest" Value="12" />
+                <Setter Property="HeightRequest" Value="12" />
+                <Setter Property="CornerRadius" Value="6" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="HasShadow" Value="True" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <!-- Background avec gradient -->
+                <BoxView>
+                    <BoxView.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#DC143C" Offset="0.0" />
+                            <GradientStop Color="#B22222" Offset="0.6" />
+                            <GradientStop Color="#F5F5DC" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
+
+                <!-- Contenu principal -->
+                <StackLayout Padding="25" VerticalOptions="FillAndExpand" Spacing="20">
+
+                    <!-- En-tête modernisé -->
+                    <Frame BackgroundColor="Transparent" 
+                           BorderColor="White"
+                           CornerRadius="25"
+                           Padding="20"
+                           Margin="0,20,0,10">
+
+                        <StackLayout Orientation="Horizontal" 
+                                     HorizontalOptions="Center"
+                                     Spacing="18">
+
+                            <!-- Indicateur moderne avec icône régionale -->
+                            <Grid WidthRequest="50" HeightRequest="50">
+                                <Frame WidthRequest="50" 
+                                       HeightRequest="50"
+                                       CornerRadius="25"
+                                       BackgroundColor="#9370DB"
+                                       BorderColor="Transparent"
+                                       HasShadow="True"
+                                       Padding="0" />
+
+                                <Frame WidthRequest="32" 
+                                       HeightRequest="32"
+                                       CornerRadius="16"
+                                       BackgroundColor="#DDA0DD"
+                                       BorderColor="Transparent"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Padding="0" />
+
+                                <Frame WidthRequest="15" 
+                                       HeightRequest="15"
+                                       CornerRadius="7"
+                                       BackgroundColor="White"
+                                       BorderColor="Transparent"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Margin="-5,-5,0,0"
+                                       Padding="0" />
+                            </Grid>
+
+                            <StackLayout VerticalOptions="Center">
+                                <Label Text="FORMES RÉGIONALES" 
+                                       FontSize="20" 
+                                       FontAttributes="Bold"
+                                       TextColor="White" />
+
+                                <Label Text="Sélectionnez une région" 
+                                       FontSize="12" 
+                                       FontAttributes="Italic"
+                                       TextColor="#FFD700"
+                                       Opacity="0.9" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Panneau principal des régions -->
+                    <Frame BackgroundColor="#F5F5DC" 
+                           CornerRadius="25" 
+                           Padding="30"
+                           HasShadow="True"
+                           BorderColor="#E0E0E0">
+
+                        <StackLayout Spacing="15">
+
+                            <!-- Instruction avec icône -->
+                            <StackLayout Orientation="Horizontal" 
+                                         HorizontalOptions="Center"
+                                         Spacing="10"
+                                         Margin="0,0,0,20">
+                                <Label Text="🌍" FontSize="20" />
+                                <Label Text="Choisissez une région à explorer :" 
+                                       FontSize="17" 
+                                       FontAttributes="Bold"
+                                       TextColor="#2F4F4F"
+                                       VerticalOptions="Center"/>
+                            </StackLayout>
+
+                            <!-- Séparateur décoratif -->
+                            <BoxView HeightRequest="2"
+                                     BackgroundColor="#9370DB"
+                                     WidthRequest="100"
+                                     HorizontalOptions="Center"
+                                     CornerRadius="1"
+                                     Opacity="0.6"
+                                     Margin="0,0,0,15" />
+
+                            <!-- Bouton "Formes d'Alola" -->
+                            <StackLayout>
+                                <Button x:Name="alola" 
+                                        Text="🏝️ FORMES D'ALOLA" 
+                                        BackgroundColor="#FF7F50"
+                                        Style="{StaticResource ModernFormButton}"
+                                        Clicked="alola_Clicked" />
+                                <Label Text="Pokémon adaptés au climat tropical d'Alola" 
+                                       Style="{StaticResource FormDescription}"/>
+                            </StackLayout>
+
+                            <!-- Bouton "Formes de Galar" -->
+                            <StackLayout>
+                                <Button x:Name="galar" 
+                                        Text="🏰 FORMES DE GALAR" 
+                                        BackgroundColor="#4169E1"
+                                        Style="{StaticResource ModernFormButton}"
+                                        Clicked="galar_Clicked" />
+                                <Label Text="Pokémon influencés par l'industrie de Galar" 
+                                       Style="{StaticResource FormDescription}"/>
+                            </StackLayout>
+
+                            <!-- Bouton "Formes d'Hisui" -->
+                            <StackLayout>
+                                <Button x:Name="hisui" 
+                                        Text="⛩️ FORMES D'HISUI" 
+                                        BackgroundColor="#8FBC8F"
+                                        Style="{StaticResource ModernFormButton}"
+                                        Clicked="hisui_Clicked" />
+                                <Label Text="Pokémon anciens de la région d'Hisui" 
+                                       Style="{StaticResource FormDescription}"/>
+                            </StackLayout>
+
+                            <!-- Bouton "Formes de Paldea" -->
+                            <StackLayout>
+                                <Button x:Name="paldea" 
+                                        Text="🎓 FORMES DE PALDEA" 
+                                        BackgroundColor="#DAA520"
+                                        Style="{StaticResource ModernFormButton}"
+                                        Clicked="paldea_Clicked" />
+                                <Label Text="Pokémon diversifiés de la péninsule ibérique" 
+                                       Style="{StaticResource FormDescription}"/>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Informations sur les formes régionales -->
+                    <Frame BackgroundColor="#E6F3FF" 
+                           CornerRadius="20" 
+                           Padding="20"
+                           HasShadow="True"
+                           BorderColor="#B0D4FF">
+
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" 
+                                         HorizontalOptions="Center"
+                                         Spacing="10">
+                                <Label Text="💡" FontSize="18" />
+                                <Label Text="À PROPOS DES FORMES RÉGIONALES" 
+                                       FontSize="14" 
+                                       FontAttributes="Bold"
+                                       TextColor="#2F4F4F" />
+                            </StackLayout>
+
+                            <Label Text="Les formes régionales sont des variantes de Pokémon existants qui se sont adaptés à différents environnements. Elles possèdent souvent des types, des apparences et des capacités différentes de leurs formes originales."
+                                   FontSize="13"
+                                   TextColor="#696969"
+                                   HorizontalTextAlignment="Center"
+                                   Margin="0,10,0,0" />
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Barre d'état modernisée -->
+                    <Frame BackgroundColor="#2F4F4F" 
+                           CornerRadius="20" 
+                           Padding="20"
+                           HasShadow="True"
+                           BorderColor="#1C3A3A">
+
+                        <Grid ColumnDefinitions="*,Auto,Auto">
+
+                            <!-- Indicateur de statut -->
+                            <StackLayout Grid.Column="0" 
+                                         Orientation="Horizontal" 
+                                         Spacing="12"
+                                         VerticalOptions="Center">
+                                <Label x:Name="StatusLabel"
+                                       Text="FORMES RÉGIONALES" 
+                                       FontSize="13" 
+                                       FontAttributes="Bold"
+                                       TextColor="#9370DB"
+                                       VerticalOptions="Center"/>
+                            </StackLayout>
+
+                            <!-- Compteur de régions -->
+                            <StackLayout Grid.Column="1"
+                                         Orientation="Horizontal"
+                                         Spacing="5"
+                                         Margin="10,0,20,0"
+                                         VerticalOptions="Center">
+                                <Label Text="🗺️" FontSize="12" />
+                                <Label Text="4" 
+                                       FontSize="12" 
+                                       FontAttributes="Bold"
+                                       TextColor="#FFD700" />
+                            </StackLayout>
+
+                            <!-- LEDs d'état -->
+                            <StackLayout Grid.Column="2" 
+                                         Orientation="Horizontal" 
+                                         Spacing="10"
+                                         VerticalOptions="Center">
+                                <Frame Style="{StaticResource StatusLed}"
+                                       BackgroundColor="#FF7F50" />
+                                <Frame Style="{StaticResource StatusLed}"
+                                       BackgroundColor="#4169E1" />
+                                <Frame Style="{StaticResource StatusLed}"
+                                       BackgroundColor="#8FBC8F" />
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+
+                    <!-- Navigation -->
+                    <Frame BackgroundColor="Transparent" 
+                           BorderColor="White"
+                           CornerRadius="20"
+                           Padding="15"
+                           Margin="0,10,0,0">
+
+                        <StackLayout Orientation="Horizontal" 
+                                     HorizontalOptions="Center"
+                                     Spacing="15">
+
+                            <!-- Bouton retour -->
+                            <Button x:Name="backButton"
+                                    Text="← RETOUR" 
+                                    BackgroundColor="#696969"
+                                    TextColor="White"
+                                    FontSize="14"
+                                    FontAttributes="Bold"
+                                    CornerRadius="18"
+                                    WidthRequest="120"
+                                    HeightRequest="45"
+                                    Clicked="OnBackClicked" />
+
+                            <!-- Bouton d'aide -->
+                            <Button Text="❓ AIDE" 
+                                    BackgroundColor="Transparent"
+                                    TextColor="White"
+                                    BorderColor="White"
+                                    BorderWidth="2"
+                                    FontSize="14"
+                                    FontAttributes="Bold"
+                                    CornerRadius="18"
+                                    WidthRequest="100"
+                                    HeightRequest="45"
+                                    Clicked="OnHelpClicked" />
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Grille décorative avec couleurs régionales -->
+                    <Frame BackgroundColor="Transparent" 
+                           BorderColor="#9370DB"
+                           CornerRadius="15"
+                           Padding="15"
+                           Margin="0,20,0,20"
+                           HorizontalOptions="Center">
+
+                        <Grid RowDefinitions="25,25"
+                              ColumnDefinitions="25,25,25,25"
+                              RowSpacing="4"
+                              ColumnSpacing="4">
+
+                            <!-- Première rangée - couleurs des régions -->
+                            <Frame Grid.Row="0" Grid.Column="0" 
+                                   BackgroundColor="#FF7F50" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="0" Grid.Column="1" 
+                                   BackgroundColor="#4169E1" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="0" Grid.Column="2" 
+                                   BackgroundColor="#8FBC8F" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="0" Grid.Column="3" 
+                                   BackgroundColor="#DAA520" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <!-- Deuxième rangée -->
+                            <Frame Grid.Row="1" Grid.Column="0" 
+                                   BackgroundColor="#9370DB" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="1" Grid.Column="1" 
+                                   BackgroundColor="#20B2AA" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="1" Grid.Column="2" 
+                                   BackgroundColor="#32CD32" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="1" Grid.Column="3" 
+                                   BackgroundColor="#FFA500" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                    </Frame>
+
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

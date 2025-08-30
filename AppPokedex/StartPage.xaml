@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppPokedex.StartPage"
+             BackgroundColor="#DC143C">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Styles pour l'animation et les effets -->
+            <Style x:Key="PulseAnimation" TargetType="Grid">
+                <Setter Property="ScaleX" Value="1" />
+                <Setter Property="ScaleY" Value="1" />
+            </Style>
+
+            <Style x:Key="ModernButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#32CD32" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" Value="25" />
+                <Setter Property="HeightRequest" Value="55" />
+                <Setter Property="WidthRequest" Value="200" />
+                <Setter Property="Margin" Value="0,10,0,0" />
+            </Style>
+
+            <Style x:Key="GlowFrame" TargetType="Frame">
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="BorderColor" Value="White" />
+                <Setter Property="Opacity" Value="0.9" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <!-- Background avec gradient effect -->
+        <BoxView>
+            <BoxView.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#DC143C" Offset="0.0" />
+                    <GradientStop Color="#B22222" Offset="0.5" />
+                    <GradientStop Color="#8B0000" Offset="1.0" />
+                </LinearGradientBrush>
+            </BoxView.Background>
+        </BoxView>
+
+        <!-- Partie inférieure moderne avec effet -->
+        <BoxView VerticalOptions="End" 
+                 HeightRequest="300"
+                 Opacity="0.95">
+            <BoxView.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="Transparent" Offset="0.0" />
+                    <GradientStop Color="#F5F5DC" Offset="0.3" />
+                    <GradientStop Color="#F5F5DC" Offset="1.0" />
+                </LinearGradientBrush>
+            </BoxView.Background>
+        </BoxView>
+
+        <!-- Contenu principal -->
+        <ScrollView>
+            <StackLayout Padding="30" 
+                         VerticalOptions="Center"
+                         Spacing="25">
+
+                <!-- Logo Pokédex modernisé avec effet de brillance -->
+                <Grid x:Name="PokedexLogo"
+                      HorizontalOptions="Center" 
+                      WidthRequest="100" 
+                      HeightRequest="100" 
+                      Margin="0,20,0,10">
+
+                    <!-- Cercle principal avec ombre -->
+                    <Frame WidthRequest="100" 
+                           HeightRequest="100"
+                           CornerRadius="50"
+                           BackgroundColor="#4169E1"
+                           BorderColor="Transparent"
+                           HasShadow="True"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Padding="0">
+                    </Frame>
+
+                    <!-- Cercle intérieur avec gradient -->
+                    <Frame WidthRequest="65" 
+                           HeightRequest="65"
+                           CornerRadius="32"
+                           BackgroundColor="#87CEEB"
+                           BorderColor="Transparent"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Padding="0" />
+
+                    <!-- Reflet brillant -->
+                    <Frame WidthRequest="28" 
+                           HeightRequest="28"
+                           CornerRadius="14"
+                           BackgroundColor="White"
+                           BorderColor="Transparent"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Margin="-10,-10,0,0"
+                           Opacity="0.9"
+                           Padding="0" />
+
+                    <!-- Petit reflet supplémentaire -->
+                    <Ellipse Fill="White"
+                             WidthRequest="12"
+                             HeightRequest="8" 
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             Margin="-15,-20,0,0"
+                             Opacity="0.7" />
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnLogoTapped" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+                <!-- Titre avec effet de texte moderne -->
+                <StackLayout HorizontalOptions="Center">
+                    <Label Text="POKÉDEX" 
+                           FontSize="36" 
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center">
+                    </Label>
+
+                    <Label Text="Système d'Encyclopédie Pokémon" 
+                           FontSize="14" 
+                           FontAttributes="Italic"
+                           TextColor="#FFD700"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           Margin="0,5,0,0">
+                    </Label>
+                </StackLayout>
+
+                <!-- Panneau d'information modernisé -->
+                <Frame BackgroundColor="#F5F5DC" 
+                       CornerRadius="20" 
+                       Padding="25"
+                       HasShadow="True"
+                       BorderColor="#E0E0E0"
+                       Margin="0,20,0,0">
+
+                    <StackLayout Spacing="12">
+                        <Label Text="Prêt pour l'aventure ?" 
+                               FontSize="20" 
+                               FontAttributes="Bold"
+                               TextColor="#2F4F4F"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"/>
+
+                        <BoxView HeightRequest="2"
+                                 BackgroundColor="#4169E1"
+                                 WidthRequest="60"
+                                 HorizontalOptions="Center"
+                                 CornerRadius="1"
+                                 Opacity="0.7" />
+
+                        <Label Text="Découvrez le monde fascinant des Pokémon avec cette interface moderne et intuitive !" 
+                               FontSize="15" 
+                               TextColor="#696969"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"
+                               LineBreakMode="WordWrap" />
+                    </StackLayout>
+                </Frame>
+
+                <!-- Section des boutons avec animations -->
+                <StackLayout Spacing="20" Margin="0,30,0,0">
+
+                    <!-- Bouton principal modernisé -->
+                    <Button x:Name="StartButton" 
+                            Text="✨ DÉMARRER L'AVENTURE ✨" 
+                            Style="{StaticResource ModernButton}"
+                            Clicked="start_Clicked">
+                    </Button>
+
+                    <!-- Bouton secondaire -->
+                    <Button Text="📊 STATISTIQUES" 
+                            BackgroundColor="Transparent"
+                            TextColor="White"
+                            BorderColor="White"
+                            BorderWidth="2"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            CornerRadius="25"
+                            HeightRequest="50"
+                            WidthRequest="200"
+                            Clicked="OnStatsClicked" />
+                </StackLayout>
+
+                <!-- Indicateurs LED modernisés -->
+                <StackLayout Orientation="Horizontal" 
+                             HorizontalOptions="Center"
+                             Spacing="20"
+                             Margin="0,25,0,0">
+
+                    <Frame Style="{StaticResource GlowFrame}"
+                           CornerRadius="10" 
+                           WidthRequest="20" 
+                           HeightRequest="20" 
+                           Padding="0">
+                        <BoxView BackgroundColor="#FF4444" 
+                                 CornerRadius="8" />
+                    </Frame>
+
+                    <Frame Style="{StaticResource GlowFrame}"
+                           CornerRadius="10" 
+                           WidthRequest="20" 
+                           HeightRequest="20" 
+                           Padding="0">
+                        <BoxView BackgroundColor="#FFD700" 
+                                 CornerRadius="8" />
+                    </Frame>
+
+                    <Frame Style="{StaticResource GlowFrame}"
+                           CornerRadius="10" 
+                           WidthRequest="20" 
+                           HeightRequest="20" 
+                           Padding="0">
+                        <BoxView BackgroundColor="#00FF7F" 
+                                 CornerRadius="8" />
+                    </Frame>
+                </StackLayout>
+
+                <!-- Grille décorative modernisée -->
+                <Frame BackgroundColor="Transparent" 
+                       BorderColor="#4169E1"
+                       CornerRadius="15"
+                       Padding="15"
+                       Margin="0,20,0,0"
+                       HorizontalOptions="Center">
+
+                    <Grid RowDefinitions="35,35"
+                          ColumnDefinitions="35,35,35,35"
+                          RowSpacing="8"
+                          ColumnSpacing="8">
+
+                        <!-- Première rangée avec effet hover -->
+                        <Frame Grid.Row="0" Grid.Column="0" 
+                               BackgroundColor="#4169E1" 
+                               CornerRadius="8" 
+                               Padding="0"
+                               HasShadow="True">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDecorativeTapped" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+
+                        <Frame Grid.Row="0" Grid.Column="1" 
+                               BackgroundColor="#4169E1" 
+                               CornerRadius="8" 
+                               Padding="0"
+                               HasShadow="True">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDecorativeTapped" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+
+                        <Frame Grid.Row="0" Grid.Column="2" 
+                               BackgroundColor="#4169E1" 
+                               CornerRadius="8" 
+                               Padding="0"
+                               HasShadow="True">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDecorativeTapped" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+
+                        <Frame Grid.Row="0" Grid.Column="3" 
+                               BackgroundColor="#4169E1" 
+                               CornerRadius="8" 
+                               Padding="0"
+                               HasShadow="True">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDecorativeTapped" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+
+                        <!-- Deuxième rangée -->
+                        <Frame Grid.Row="1" Grid.Column="0" 
+                               BackgroundColor="#4169E1" 
+                               CornerRadius="8" 
+                               Padding="0"
+                               HasShadow="True">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDecorativeTapped" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+
+                        <Frame Grid.Row="1" Grid.Column="1" 
+                               BackgroundColor="#4169E1" 
+                               CornerRadius="8" 
+                               Padding="0"
+                               HasShadow="True">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDecorativeTapped" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+
+                        <Frame Grid.Row="1" Grid.Column="2" 
+                               BackgroundColor="#4169E1" 
+                               CornerRadius="8" 
+                               Padding="0"
+                               HasShadow="True">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDecorativeTapped" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+
+                        <Frame Grid.Row="1" Grid.Column="3" 
+                               BackgroundColor="#4169E1" 
+                               CornerRadius="8" 
+                               Padding="0"
+                               HasShadow="True">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDecorativeTapped" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </Grid>
+                </Frame>
+
+                <!-- Footer avec version -->
+                <Label Text="Version 1.0 - Pokédex Moderne" 
+                       FontSize="12" 
+                       TextColor="Black"
+                       Opacity="0.7"
+                       HorizontalOptions="Center"
+                       Margin="0,20,0,10" />
+
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

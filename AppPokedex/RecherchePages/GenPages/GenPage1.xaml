@@ -1,0 +1,515 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppPokedex.RecherchePages.GenPages.GenPage1"
+             BackgroundColor="#DC143C">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Styles modernes pour les boutons -->
+            <Style x:Key="ModernGenButton" TargetType="Button">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" Value="25" />
+                <Setter Property="HeightRequest" Value="60" />
+                <Setter Property="Margin" Value="0,6,0,6" />
+            </Style>
+
+            <Style x:Key="GenDescription" TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="#696969" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,3,0,12" />
+                <Setter Property="FontAttributes" Value="Italic" />
+            </Style>
+
+            <Style x:Key="StatusLed" TargetType="Frame">
+                <Setter Property="WidthRequest" Value="12" />
+                <Setter Property="HeightRequest" Value="12" />
+                <Setter Property="CornerRadius" Value="6" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="HasShadow" Value="True" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <!-- Background avec gradient -->
+                <BoxView>
+                    <BoxView.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#DC143C" Offset="0.0" />
+                            <GradientStop Color="#B22222" Offset="0.6" />
+                            <GradientStop Color="#F5F5DC" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
+
+                <!-- Contenu principal -->
+                <StackLayout Padding="25" VerticalOptions="FillAndExpand" Spacing="20">
+
+                    <!-- En-tête modernisé -->
+                    <Frame BackgroundColor="Transparent" 
+                           BorderColor="White"
+                           CornerRadius="25"
+                           Padding="20"
+                           Margin="0,20,0,10">
+
+                        <StackLayout Orientation="Horizontal" 
+                                     HorizontalOptions="Center"
+                                     Spacing="18">
+
+                            <!-- Indicateur moderne avec icône générationnelle -->
+                            <Grid WidthRequest="50" HeightRequest="50">
+                                <Frame WidthRequest="50" 
+                                       HeightRequest="50"
+                                       CornerRadius="25"
+                                       BackgroundColor="#4169E1"
+                                       BorderColor="Transparent"
+                                       HasShadow="True"
+                                       Padding="0" />
+
+                                <Frame WidthRequest="32" 
+                                       HeightRequest="32"
+                                       CornerRadius="16"
+                                       BackgroundColor="#87CEEB"
+                                       BorderColor="Transparent"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Padding="0" />
+
+                                <Label Text="⚡" 
+                                       FontSize="20" 
+                                       TextColor="White"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                            </Grid>
+
+                            <StackLayout VerticalOptions="Center">
+                                <Label Text="GÉNÉRATIONS POKÉMON" 
+                                       FontSize="20" 
+                                       FontAttributes="Bold"
+                                       TextColor="White" />
+
+                                <Label Text="Explorez les régions par génération" 
+                                       FontSize="12" 
+                                       FontAttributes="Italic"
+                                       TextColor="#FFD700"
+                                       Opacity="0.9" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Panneau principal des générations -->
+                    <Frame BackgroundColor="#F5F5DC" 
+                           CornerRadius="25" 
+                           Padding="25"
+                           HasShadow="True"
+                           BorderColor="#E0E0E0">
+
+                        <StackLayout Spacing="12">
+
+                            <!-- Instruction avec icône -->
+                            <StackLayout Orientation="Horizontal" 
+                                         HorizontalOptions="Center"
+                                         Spacing="10"
+                                         Margin="0,0,0,15">
+                                <Label Text="🎮" FontSize="20" />
+                                <Label Text="Sélectionnez une génération à découvrir :" 
+                                       FontSize="16" 
+                                       FontAttributes="Bold"
+                                       TextColor="#2F4F4F"
+                                       VerticalOptions="Center"/>
+                            </StackLayout>
+
+                            <!-- Séparateur décoratif -->
+                            <BoxView HeightRequest="2"
+                                     BackgroundColor="#4169E1"
+                                     WidthRequest="120"
+                                     HorizontalOptions="Center"
+                                     CornerRadius="1"
+                                     Opacity="0.6"
+                                     Margin="0,0,0,15" />
+
+                            <!-- Génération 1 -->
+                            <StackLayout>
+                                <Button x:Name="gen1" 
+                                        Text="🔴 GEN I - RÉGION DE KANTO" 
+                                        BackgroundColor="#FF4500"
+                                        Style="{StaticResource ModernGenButton}"
+                                        Clicked="gen1_Clicked" />
+                                <Label Text="Les 150 Pokémon originaux + Mew (#001-#151)" 
+                                       Style="{StaticResource GenDescription}"/>
+                            </StackLayout>
+
+                            <!-- Génération 2 -->
+                            <StackLayout>
+                                <Button x:Name="gen2" 
+                                        Text="🟡 GEN II - RÉGION DE JOHTO" 
+                                        BackgroundColor="#DAA520"
+                                        Style="{StaticResource ModernGenButton}"
+                                        Clicked="gen2_Clicked" />
+                                <Label Text="100 nouveaux Pokémon et les bébés (#152-#251)" 
+                                       Style="{StaticResource GenDescription}"/>
+                            </StackLayout>
+
+                            <!-- Génération 3 -->
+                            <StackLayout>
+                                <Button x:Name="gen3" 
+                                        Text="🔵 GEN III - RÉGION D'HOENN" 
+                                        BackgroundColor="#1E90FF"
+                                        Style="{StaticResource ModernGenButton}"
+                                        Clicked="gen3_Clicked" />
+                                <Label Text="135 Pokémon avec les capacités spéciales (#252-#386)" 
+                                       Style="{StaticResource GenDescription}"/>
+                            </StackLayout>
+
+                            <!-- Génération 4 -->
+                            <StackLayout>
+                                <Button x:Name="gen4" 
+                                        Text="⚫ GEN IV - RÉGION DE SINNOH" 
+                                        BackgroundColor="#4B0082"
+                                        Style="{StaticResource ModernGenButton}"
+                                        Clicked="gen4_Clicked" />
+                                <Label Text="107 Pokémon et l'attaque/défense spéciale divisée (#387-#493)" 
+                                       Style="{StaticResource GenDescription}"/>
+                            </StackLayout>
+
+                            <!-- Génération 5 -->
+                            <StackLayout>
+                                <Button x:Name="gen5" 
+                                        Text="⚪ GEN V - RÉGION D'UNYS" 
+                                        BackgroundColor="#2F4F4F"
+                                        Style="{StaticResource ModernGenButton}"
+                                        Clicked="gen5_Clicked" />
+                                <Label Text="156 nouveaux Pokémon, le plus grand nombre (#494-#649)" 
+                                       Style="{StaticResource GenDescription}"/>
+                            </StackLayout>
+
+                            <!-- Génération 6 -->
+                            <StackLayout>
+                                <Button x:Name="gen6" 
+                                        Text="🌸 GEN VI - RÉGION DE KALOS" 
+                                        BackgroundColor="#FF69B4"
+                                        Style="{StaticResource ModernGenButton}"
+                                        Clicked="gen6_Clicked" />
+                                <Label Text="72 Pokémon et l'introduction du type Fée (#650-#721)" 
+                                       Style="{StaticResource GenDescription}"/>
+                            </StackLayout>
+
+                            <!-- Génération 7 -->
+                            <StackLayout>
+                                <Button x:Name="gen7" 
+                                        Text="🌺 GEN VII - RÉGION D'ALOLA" 
+                                        BackgroundColor="#FF7F50"
+                                        Style="{StaticResource ModernGenButton}"
+                                        Clicked="gen7_Clicked" />
+                                <Label Text="88 Pokémon avec les formes d'Alola (#722-#809)" 
+                                       Style="{StaticResource GenDescription}"/>
+                            </StackLayout>
+
+                            <!-- Génération 8 -->
+                            <StackLayout>
+                                <Button x:Name="gen8" 
+                                        Text="🏰 GEN VIII - GALAR ET HISUI" 
+                                        BackgroundColor="#8B4513"
+                                        Style="{StaticResource ModernGenButton}"
+                                        Clicked="gen8_Clicked" />
+                                <Label Text="96 Pokémon de Galar + formes d'Hisui (#810-#905)" 
+                                       Style="{StaticResource GenDescription}"/>
+                            </StackLayout>
+
+                            <!-- Génération 9 -->
+                            <StackLayout>
+                                <Button x:Name="gen9" 
+                                        Text="🎓 GEN IX - RÉGION DE PALDEA" 
+                                        BackgroundColor="#32CD32"
+                                        Style="{StaticResource ModernGenButton}"
+                                        Clicked="gen9_Clicked" />
+                                <Label Text="120 nouveaux Pokémon de Paldea (#906-#1025)" 
+                                       Style="{StaticResource GenDescription}"/>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Informations sur les générations -->
+                    <Frame BackgroundColor="#E6F3FF" 
+                           CornerRadius="20" 
+                           Padding="20"
+                           HasShadow="True"
+                           BorderColor="#B0D4FF">
+
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" 
+                                         HorizontalOptions="Center"
+                                         Spacing="10">
+                                <Label Text="📚" FontSize="18" />
+                                <Label Text="ÉVOLUTION DES GÉNÉRATIONS" 
+                                       FontSize="14" 
+                                       FontAttributes="Bold"
+                                       TextColor="#2F4F4F" />
+                            </StackLayout>
+
+                            <Label Text="Chaque génération Pokémon introduit de nouveaux Pokémon, mécaniques de jeu et régions. De Kanto avec ses 151 Pokémon originaux jusqu'à Paldea avec ses innovations récentes, découvrez l'évolution de l'univers Pokémon à travers les décennies."
+                                   FontSize="13"
+                                   TextColor="#696969"
+                                   HorizontalTextAlignment="Center"
+                                   Margin="0,10,0,0" />
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Statistiques rapides -->
+                    <Frame BackgroundColor="#F0FFF0" 
+                           CornerRadius="20" 
+                           Padding="15"
+                           HasShadow="True"
+                           BorderColor="#90EE90">
+
+                        <Grid ColumnDefinitions="*,*,*" RowSpacing="5">
+                            <StackLayout Grid.Column="0" HorizontalOptions="Center">
+                                <Label Text="📊" FontSize="16" HorizontalOptions="Center"/>
+                                <Label Text="1025" 
+                                       FontSize="16" 
+                                       FontAttributes="Bold" 
+                                       TextColor="#2F4F4F"
+                                       HorizontalOptions="Center"/>
+                                <Label Text="Pokémon" 
+                                       FontSize="11" 
+                                       TextColor="#696969"
+                                       HorizontalOptions="Center"/>
+                            </StackLayout>
+
+                            <StackLayout Grid.Column="1" HorizontalOptions="Center">
+                                <Label Text="🌍" FontSize="16" HorizontalOptions="Center"/>
+                                <Label Text="10" 
+                                       FontSize="16" 
+                                       FontAttributes="Bold" 
+                                       TextColor="#2F4F4F"
+                                       HorizontalOptions="Center"/>
+                                <Label Text="Régions" 
+                                       FontSize="11" 
+                                       TextColor="#696969"
+                                       HorizontalOptions="Center"/>
+                            </StackLayout>
+
+                            <StackLayout Grid.Column="2" HorizontalOptions="Center">
+                                <Label Text="🎮" FontSize="16" HorizontalOptions="Center"/>
+                                <Label Text="28+" 
+                                       FontSize="16" 
+                                       FontAttributes="Bold" 
+                                       TextColor="#2F4F4F"
+                                       HorizontalOptions="Center"/>
+                                <Label Text="Ans" 
+                                       FontSize="11" 
+                                       TextColor="#696969"
+                                       HorizontalOptions="Center"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+
+                    <!-- Barre d'état modernisée -->
+                    <Frame BackgroundColor="#2F4F4F" 
+                           CornerRadius="20" 
+                           Padding="20"
+                           HasShadow="True"
+                           BorderColor="#1C3A3A">
+
+                        <Grid ColumnDefinitions="*,Auto,Auto">
+
+                            <!-- Indicateur de statut -->
+                            <StackLayout Grid.Column="0" 
+                                         Orientation="Horizontal" 
+                                         Spacing="12"
+                                         VerticalOptions="Center">
+                                <Label x:Name="StatusLabel"
+                                       Text="GÉNÉRATIONS" 
+                                       FontSize="13" 
+                                       FontAttributes="Bold"
+                                       TextColor="#4169E1"
+                                       VerticalOptions="Center"/>
+                            </StackLayout>
+
+                            <!-- Compteur de générations -->
+                            <StackLayout Grid.Column="1"
+                                         Orientation="Horizontal"
+                                         Spacing="5"
+                                         Margin="10,0,20,0"
+                                         VerticalOptions="Center">
+                                <Label Text="🔢" FontSize="12" />
+                                <Label Text="IX" 
+                                       FontSize="12" 
+                                       FontAttributes="Bold"
+                                       TextColor="#FFD700" />
+                            </StackLayout>
+
+                            <!-- LEDs d'état -->
+                            <StackLayout Grid.Column="2" 
+                                         Orientation="Horizontal" 
+                                         Spacing="8"
+                                         VerticalOptions="Center">
+                                <Frame Style="{StaticResource StatusLed}"
+                                       BackgroundColor="#FF4500" />
+                                <Frame Style="{StaticResource StatusLed}"
+                                       BackgroundColor="#4169E1" />
+                                <Frame Style="{StaticResource StatusLed}"
+                                       BackgroundColor="#32CD32" />
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+
+                    <!-- Navigation -->
+                    <Frame BackgroundColor="Transparent" 
+                           BorderColor="White"
+                           CornerRadius="20"
+                           Padding="15"
+                           Margin="0,10,0,0">
+
+                        <StackLayout Orientation="Horizontal" 
+                                     HorizontalOptions="Center"
+                                     Spacing="15">
+
+                            <!-- Bouton retour -->
+                            <Button x:Name="backButton"
+                                    Text="← RETOUR" 
+                                    BackgroundColor="#696969"
+                                    TextColor="White"
+                                    FontSize="14"
+                                    FontAttributes="Bold"
+                                    CornerRadius="18"
+                                    WidthRequest="120"
+                                    HeightRequest="45"
+                                    Clicked="OnBackClicked" />
+
+                            <!-- Bouton d'aide -->
+                            <Button Text="❓ AIDE" 
+                                    BackgroundColor="Transparent"
+                                    TextColor="White"
+                                    BorderColor="White"
+                                    BorderWidth="2"
+                                    FontSize="14"
+                                    FontAttributes="Bold"
+                                    CornerRadius="18"
+                                    WidthRequest="100"
+                                    HeightRequest="45"
+                                    Clicked="OnHelpClicked" />
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Grille décorative avec couleurs générationnelles -->
+                    <Frame BackgroundColor="Transparent" 
+                           BorderColor="#4169E1"
+                           CornerRadius="15"
+                           Padding="15"
+                           Margin="0,15,0,20"
+                           HorizontalOptions="Center">
+
+                        <Grid RowDefinitions="20,20,20"
+                              ColumnDefinitions="20,20,20"
+                              RowSpacing="5"
+                              ColumnSpacing="5">
+
+                            <!-- Première rangée -->
+                            <Frame Grid.Row="0" Grid.Column="0" 
+                                   BackgroundColor="#FF4500" 
+                                   CornerRadius="4" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="0" Grid.Column="1" 
+                                   BackgroundColor="#DAA520" 
+                                   CornerRadius="4" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="0" Grid.Column="2" 
+                                   BackgroundColor="#1E90FF" 
+                                   CornerRadius="4" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <!-- Deuxième rangée -->
+                            <Frame Grid.Row="1" Grid.Column="0" 
+                                   BackgroundColor="#4B0082" 
+                                   CornerRadius="4" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="1" Grid.Column="1" 
+                                   BackgroundColor="#2F4F4F" 
+                                   CornerRadius="4" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="1" Grid.Column="2" 
+                                   BackgroundColor="#FF69B4" 
+                                   CornerRadius="4" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <!-- Troisième rangée -->
+                            <Frame Grid.Row="2" Grid.Column="0" 
+                                   BackgroundColor="#FF7F50" 
+                                   CornerRadius="4" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="2" Grid.Column="1" 
+                                   BackgroundColor="#8B4513" 
+                                   CornerRadius="4" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="2" Grid.Column="2" 
+                                   BackgroundColor="#32CD32" 
+                                   CornerRadius="4" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                    </Frame>
+
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

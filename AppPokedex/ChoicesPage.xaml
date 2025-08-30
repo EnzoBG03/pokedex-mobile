@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppPokedex.ChoicesPage"
+             BackgroundColor="#DC143C">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Styles modernes pour les boutons -->
+            <Style x:Key="ModernChoiceButton" TargetType="Button">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" Value="25" />
+                <Setter Property="HeightRequest" Value="65" />
+                <Setter Property="Margin" Value="0,8,0,8" />
+            </Style>
+
+            <Style x:Key="ChoiceDescription" TargetType="Label">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="#696969" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,5,0,15" />
+                <Setter Property="FontAttributes" Value="Italic" />
+            </Style>
+
+            <Style x:Key="StatusLed" TargetType="Frame">
+                <Setter Property="WidthRequest" Value="12" />
+                <Setter Property="HeightRequest" Value="12" />
+                <Setter Property="CornerRadius" Value="6" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="HasShadow" Value="True" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <!-- Background avec gradient -->
+                <BoxView>
+                    <BoxView.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#DC143C" Offset="0.0" />
+                            <GradientStop Color="#B22222" Offset="0.6" />
+                            <GradientStop Color="#F5F5DC" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
+
+                <!-- Contenu principal -->
+                <StackLayout Padding="25" VerticalOptions="FillAndExpand" Spacing="20">
+
+                    <!-- En-tête modernisé -->
+                    <Frame BackgroundColor="Transparent" 
+                           BorderColor="White"
+                           CornerRadius="25"
+                           Padding="20"
+                           Margin="0,20,0,10">
+
+                        <StackLayout Orientation="Horizontal" 
+                                     HorizontalOptions="Center"
+                                     Spacing="18">
+
+                            <!-- Indicateur moderne avec animation -->
+                            <Grid WidthRequest="50" HeightRequest="50">
+                                <Frame WidthRequest="50" 
+                                       HeightRequest="50"
+                                       CornerRadius="25"
+                                       BackgroundColor="#4169E1"
+                                       BorderColor="Transparent"
+                                       HasShadow="True"
+                                       Padding="0">
+                                </Frame>
+
+                                <Frame WidthRequest="32" 
+                                       HeightRequest="32"
+                                       CornerRadius="16"
+                                       BackgroundColor="#87CEEB"
+                                       BorderColor="Transparent"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Padding="0" />
+
+                                <Frame WidthRequest="15" 
+                                       HeightRequest="15"
+                                       CornerRadius="7"
+                                       BackgroundColor="White"
+                                       BorderColor="Transparent"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Margin="-5,-5,0,0"
+                                       Padding="0" />
+                            </Grid>
+
+                            <StackLayout VerticalOptions="Center">
+                                <Label Text="MODE DE RECHERCHE" 
+                                       FontSize="20" 
+                                       FontAttributes="Bold"
+                                       TextColor="White">
+                                </Label>
+
+                                <Label Text="Choisissez votre méthode" 
+                                       FontSize="12" 
+                                       FontAttributes="Italic"
+                                       TextColor="#FFD700"
+                                       Opacity="0.9" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Panneau principal des choix modernisé -->
+                    <Frame BackgroundColor="#F5F5DC" 
+                           CornerRadius="25" 
+                           Padding="30"
+                           HasShadow="True"
+                           BorderColor="#E0E0E0">
+
+                        <StackLayout Spacing="15">
+
+                            <!-- Instruction avec icône -->
+                            <StackLayout Orientation="Horizontal" 
+                                         HorizontalOptions="Center"
+                                         Spacing="10"
+                                         Margin="0,0,0,20">
+                                <Label Text="🔍" FontSize="20" />
+                                <Label Text="Sélectionnez votre méthode de recherche :" 
+                                       FontSize="17" 
+                                       FontAttributes="Bold"
+                                       TextColor="#2F4F4F"
+                                       VerticalOptions="Center"/>
+                            </StackLayout>
+
+                            <!-- Séparateur décoratif -->
+                            <BoxView HeightRequest="2"
+                                     BackgroundColor="#4169E1"
+                                     WidthRequest="100"
+                                     HorizontalOptions="Center"
+                                     CornerRadius="1"
+                                     Opacity="0.6"
+                                     Margin="0,0,0,15" />
+
+                            <!-- Bouton "Tous les Pokémon" avec gradient -->
+                            <StackLayout>
+                                <Button x:Name="all" 
+                                        Text="🌟 TOUS LES POKÉMON" 
+                                        BackgroundColor="#FF6B35"
+                                        Style="{StaticResource ModernChoiceButton}"
+                                        Clicked="all_Clicked">
+                                </Button>
+                                <Label Text="Parcourir l'encyclopédie complète des 1025 Pokémon" 
+                                       Style="{StaticResource ChoiceDescription}"/>
+                            </StackLayout>
+
+                            <!-- Bouton "Identifiant / Nom" -->
+                            <StackLayout>
+                                <Button x:Name="idname" 
+                                        Text="🔢 IDENTIFIANT / NOM" 
+                                        BackgroundColor="#4ECDC4"
+                                        Style="{StaticResource ModernChoiceButton}"
+                                        Clicked="idname_Clicked">
+                                </Button>
+                                <Label Text="Recherche rapide par numéro Pokédex ou nom" 
+                                       Style="{StaticResource ChoiceDescription}"/>
+                            </StackLayout>
+
+                            <!-- Bouton "Forme régionale" -->
+                            <StackLayout>
+                                <Button x:Name="form" 
+                                        Text="🌍 FORMES RÉGIONALES" 
+                                        BackgroundColor="#45B7D1"
+                                        Style="{StaticResource ModernChoiceButton}"
+                                        Clicked="form_Clicked">
+                                </Button>
+                                <Label Text="Variantes d'Alola, Galar, Hisui et autres régions" 
+                                       Style="{StaticResource ChoiceDescription}"/>
+                            </StackLayout>
+
+                            <!-- Bouton "Générations" -->
+                            <StackLayout>
+                                <Button x:Name="gen" 
+                                        Text="⚡ GÉNÉRATIONS" 
+                                        BackgroundColor="#96CEB4"
+                                        Style="{StaticResource ModernChoiceButton}"
+                                        Clicked="gen_Clicked">
+                                </Button>
+                                <Label Text="Explorez par génération (I à IX)" 
+                                       Style="{StaticResource ChoiceDescription}"/>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Barre d'état modernisée -->
+                    <Frame BackgroundColor="#2F4F4F" 
+                           CornerRadius="20" 
+                           Padding="20"
+                           HasShadow="True"
+                           BorderColor="#1C3A3A">
+
+                        <Grid ColumnDefinitions="*,Auto,Auto">
+
+                            <!-- Indicateur de statut avec animation -->
+                            <StackLayout Grid.Column="0" 
+                                         Orientation="Horizontal" 
+                                         Spacing="12"
+                                         VerticalOptions="Center">
+                                <Label x:Name="StatusLabel"
+                                       Text="SYSTÈME OPÉRATIONNEL" 
+                                       FontSize="13" 
+                                       FontAttributes="Bold"
+                                       TextColor="#32CD32"
+                                       VerticalOptions="Center"/>
+                            </StackLayout>
+
+                            <!-- Compteur Pokémon -->
+                            <StackLayout Grid.Column="1"
+                                         Orientation="Horizontal"
+                                         Spacing="5"
+                                         Margin="10,0,20,0"
+                                         VerticalOptions="Center">
+                                <Label Text="🎯" FontSize="12" />
+                                <Label Text="1025" 
+                                       FontSize="12" 
+                                       FontAttributes="Bold"
+                                       TextColor="#FFD700" />
+                            </StackLayout>
+
+                            <!-- LEDs d'état avec effet de pulsation -->
+                            <StackLayout Grid.Column="2" 
+                                         Orientation="Horizontal" 
+                                         Spacing="10"
+                                         VerticalOptions="Center">
+                                <Frame Style="{StaticResource StatusLed}"
+                                       BackgroundColor="#32CD32" />
+                                <Frame Style="{StaticResource StatusLed}"
+                                       BackgroundColor="#FFD700" />
+                                <Frame Style="{StaticResource StatusLed}"
+                                       BackgroundColor="#FF6347" />
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+
+                    <!-- Section de navigation avec boutons supplémentaires -->
+                    <Frame BackgroundColor="Transparent" 
+                           BorderColor="White"
+                           CornerRadius="20"
+                           Padding="15"
+                           Margin="0,10,0,0">
+
+                        <StackLayout Orientation="Horizontal" 
+                                     HorizontalOptions="Center"
+                                     Spacing="15">
+
+                            <!-- Bouton retour modernisé -->
+                            <Button x:Name="return"
+                                    Text="← RETOUR" 
+                                    BackgroundColor="#696969"
+                                    TextColor="White"
+                                    FontSize="14"
+                                    FontAttributes="Bold"
+                                    CornerRadius="18"
+                                    WidthRequest="120"
+                                    HeightRequest="45"
+                                    Clicked="return_Clicked">
+                            </Button>
+
+                            <!-- Bouton d'aide -->
+                            <Button Text="❓ AIDE" 
+                                    BackgroundColor="Transparent"
+                                    TextColor="White"
+                                    BorderColor="White"
+                                    BorderWidth="2"
+                                    FontSize="14"
+                                    FontAttributes="Bold"
+                                    CornerRadius="18"
+                                    WidthRequest="100"
+                                    HeightRequest="45"
+                                    Clicked="OnHelpClicked" />
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Grille décorative modernisée avec effets -->
+                    <Frame BackgroundColor="Transparent" 
+                           BorderColor="#4169E1"
+                           CornerRadius="15"
+                           Padding="15"
+                           Margin="0,20,0,20"
+                           HorizontalOptions="Center">
+
+                        <Grid RowDefinitions="25,25"
+                              ColumnDefinitions="25,25,25,25,25,25"
+                              RowSpacing="4"
+                              ColumnSpacing="4">
+
+                            <!-- Première rangée avec dégradé de couleurs -->
+                            <Frame Grid.Row="0" Grid.Column="0" 
+                                   BackgroundColor="#FF6B35" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="0" Grid.Column="1" 
+                                   BackgroundColor="#4ECDC4" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="0" Grid.Column="2" 
+                                   BackgroundColor="#45B7D1" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="0" Grid.Column="3" 
+                                   BackgroundColor="#96CEB4" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="0" Grid.Column="4" 
+                                   BackgroundColor="#FFD700" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="0" Grid.Column="5" 
+                                   BackgroundColor="#FF69B4" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <!-- Deuxième rangée avec différentes couleurs -->
+                            <Frame Grid.Row="1" Grid.Column="0" 
+                                   BackgroundColor="#9370DB" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="1" Grid.Column="1" 
+                                   BackgroundColor="#20B2AA" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="1" Grid.Column="2" 
+                                   BackgroundColor="#32CD32" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="1" Grid.Column="3" 
+                                   BackgroundColor="#FFA500" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="1" Grid.Column="4" 
+                                   BackgroundColor="#DC143C" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame Grid.Row="1" Grid.Column="5" 
+                                   BackgroundColor="#4169E1" 
+                                   CornerRadius="6" 
+                                   Padding="0"
+                                   HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGridItemTapped" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                    </Frame>
+
+                    <!-- Section d'informations supplémentaires -->
+                    <Frame BackgroundColor="#F5F5DC" 
+                           CornerRadius="15" 
+                           Padding="20"
+                           HasShadow="True"
+                           Opacity="0.95"
+                           Margin="0,0,0,20">
+
+                        <StackLayout Orientation="Horizontal" 
+                                     HorizontalOptions="Center"
+                                     Spacing="20">
+
+                            <StackLayout HorizontalOptions="Center" Spacing="5">
+                                <Label Text="📊" FontSize="20" HorizontalOptions="Center" />
+                                <Label Text="Base de données" 
+                                       FontSize="11" 
+                                       FontAttributes="Bold"
+                                       TextColor="#2F4F4F"
+                                       HorizontalOptions="Center" />
+                                <Label Text="Complète" 
+                                       FontSize="11" 
+                                       TextColor="#32CD32"
+                                       HorizontalOptions="Center" />
+                            </StackLayout>
+
+                            <BoxView WidthRequest="2" 
+                                     BackgroundColor="#4169E1" 
+                                     Opacity="0.3" />
+
+                            <StackLayout HorizontalOptions="Center" Spacing="5">
+                                <Label Text="⚡" FontSize="20" HorizontalOptions="Center" />
+                                <Label Text="Recherche" 
+                                       FontSize="11" 
+                                       FontAttributes="Bold"
+                                       TextColor="#2F4F4F"
+                                       HorizontalOptions="Center" />
+                                <Label Text="Instantanée" 
+                                       FontSize="11" 
+                                       TextColor="#32CD32"
+                                       HorizontalOptions="Center" />
+                            </StackLayout>
+
+                            <BoxView WidthRequest="2" 
+                                     BackgroundColor="#4169E1" 
+                                     Opacity="0.3" />
+
+                            <StackLayout HorizontalOptions="Center" Spacing="5">
+                                <Label Text="🌟" FontSize="20" HorizontalOptions="Center" />
+                                <Label Text="Interface" 
+                                       FontSize="11" 
+                                       FontAttributes="Bold"
+                                       TextColor="#2F4F4F"
+                                       HorizontalOptions="Center" />
+                                <Label Text="Moderne" 
+                                       FontSize="11" 
+                                       TextColor="#32CD32"
+                                       HorizontalOptions="Center" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
