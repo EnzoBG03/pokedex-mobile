@@ -17,33 +17,7 @@ namespace AppPokedex
         {
             InitializeComponent();
             _pokemon = pokemon;
-            InitializeTypeColors();
             LoadPokemonDetails();
-        }
-
-        private void InitializeTypeColors()
-        {
-            _typeColors = new Dictionary<string, Color>
-            {
-                { "Normal", Color.FromHex("#A8A878") },
-                { "Feu", Color.FromHex("#F08030") },
-                { "Eau", Color.FromHex("#6890F0") },
-                { "Électrik", Color.FromHex("#F8D030") },
-                { "Plante", Color.FromHex("#78C850") },
-                { "Glace", Color.FromHex("#98D8D8") },
-                { "Combat", Color.FromHex("#C03028") },
-                { "Poison", Color.FromHex("#A040A0") },
-                { "Sol", Color.FromHex("#E0C068") },
-                { "Vol", Color.FromHex("#A890F0") },
-                { "Psy", Color.FromHex("#F85888") },
-                { "Insecte", Color.FromHex("#A8B820") },
-                { "Roche", Color.FromHex("#B8A038") },
-                { "Spectre", Color.FromHex("#705898") },
-                { "Dragon", Color.FromHex("#7038F8") },
-                { "Ténèbres", Color.FromHex("#705848") },
-                { "Acier", Color.FromHex("#B8B8D0") },
-                { "Fée", Color.FromHex("#EE99AC") }
-            };
         }
 
         private void LoadPokemonDetails()
@@ -83,27 +57,13 @@ namespace AppPokedex
             {
                 foreach (var type in _pokemon.types)
                 {
-                    var typeFrame = new Frame
-                    {
-                        BackgroundColor = _typeColors.ContainsKey(type.name) ? _typeColors[type.name] : Color.Gray,
-                        CornerRadius = 12,
-                        Padding = new Thickness(12, 6),
-                        HasShadow = false,
-                        Margin = new Thickness(0, 0, 5, 0)
+                    var typeImage = new Image 
+                    { 
+                        Source = type.image, 
+                        WidthRequest = 30, 
+                        HeightRequest = 30 
                     };
-
-                    var typeLabel = new Label
-                    {
-                        Text = type.name.ToUpper(),
-                        TextColor = Color.White,
-                        FontSize = 11,
-                        FontAttributes = FontAttributes.Bold,
-                        HorizontalOptions = LayoutOptions.Center,
-                        VerticalOptions = LayoutOptions.Center
-                    };
-
-                    typeFrame.Content = typeLabel;
-                    TypesContainer.Children.Add(typeFrame);
+                    TypesContainer.Children.Add(typeImage);
                 }
             }
         }
