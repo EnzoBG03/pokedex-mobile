@@ -17,6 +17,7 @@ Pour installer l'APK de l'application, veillez à autoriser l'installation prove
 Les contributions à ce projet sont les bienvenues. N'hésitez pas à forker le projet et à soumettre vos pull requests.
 
 ## Versions
+- v1.0.1 : Changement du visuel des types du Pokémon
 - v1.0 : Version initiale
 
 ## Auteur
