@@ -5,6 +5,7 @@ Pokédex Mobile est une application mobile Android qui permet de rechercher les 
 
 ## Fonctionnalités
 - Recherche globale : accédez à la liste complète des 1025 Pokémons et sélectionnez-en un pour voir ses informations
+- Recherche aléatoire : accédez à une fiche Pokédex choisie au hasard par l'application
 - Recherche par ID ou par nom : saisissez le nom du Pokémon ou son numéro dans le Pokédex pour accéder à sa fiche Pokédex
 - Recherche par forme régionale : accédez à une liste de Pokémons triée selon une région possédant des variantes de Pokémons choisie au préalable et sélectionnez-en un pour voir ses informations
 - Recherche par génération : accédez à une liste de Pokémons triée selon une génération choisie au préalable et sélectionnez-en un pour voir ses informations
@@ -17,7 +18,7 @@ Pour installer l'APK de l'application, veillez à autoriser l'installation prove
 Les contributions à ce projet sont les bienvenues. N'hésitez pas à forker le projet et à soumettre vos pull requests.
 
 ## Versions
-- v1.0.2 : Résolution d'un bug sur la recherche par nom
+- v1.1.0 (Prochainement) : Ajout d'une fonctionnalité de recherche aléatoire et résolution de bugs
 - v1.0.1 : Changement du visuel des types du Pokémon
 - v1.0 : Version initiale
 
