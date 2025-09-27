@@ -326,7 +326,7 @@
                 </Frame>
 
                 <!-- Footer avec version -->
-                <Label Text="Version 1.0 - Pokédex Moderne" 
+                <Label Text="Version 1.1.0 - Pokédex Moderne" 
                        FontSize="12" 
                        TextColor="Black"
                        Opacity="0.7"
