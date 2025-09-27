@@ -638,3 +638,4 @@ C:\Users\enzob\OneDrive\Bureau\Fichiers de code\AppPokedex\AppPokedex.Android\ob
 C:\Users\enzob\OneDrive\Bureau\Fichiers de code\AppPokedex\AppPokedex.Android\obj\Debug\130\stamp\_GenerateJavaStubs.stamp
 C:\Users\enzob\OneDrive\Bureau\Fichiers de code\AppPokedex\AppPokedex.Android\obj\Debug\130\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\enzob\OneDrive\Bureau\Fichiers de code\AppPokedex\AppPokedex.Android\obj\Debug\130\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\enzob\OneDrive\Bureau\Fichiers de code\AppPokedex\AppPokedex.Android\obj\Debug\130\android\src\com\companyname\apppokedex\R.java

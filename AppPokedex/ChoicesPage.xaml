@@ -153,6 +153,18 @@
                                        Style="{StaticResource ChoiceDescription}"/>
                             </StackLayout>
 
+                            <!-- Bouton "Aléatoire" -->
+                            <StackLayout>
+                                <Button x:Name="rand" 
+                                        Text="🎲 ALÉATOIRE" 
+                                        BackgroundColor="#9370DB"
+                                        Style="{StaticResource ModernChoiceButton}"
+                                        Clicked="rand_Clicked">
+                                </Button>
+                                <Label Text="Découvrir un Pokémon sélectionné au hasard" 
+                                        Style="{StaticResource ChoiceDescription}"/>
+                            </StackLayout>
+
                             <!-- Bouton "Identifiant / Nom" -->
                             <StackLayout>
                                 <Button x:Name="idname" 
@@ -161,7 +173,7 @@
                                         Style="{StaticResource ModernChoiceButton}"
                                         Clicked="idname_Clicked">
                                 </Button>
-                                <Label Text="Recherche rapide par numéro Pokédex ou nom" 
+                                <Label Text="Recherche rapide par numéro Pokédex ou par nom" 
                                        Style="{StaticResource ChoiceDescription}"/>
                             </StackLayout>
 
@@ -185,7 +197,7 @@
                                         Style="{StaticResource ModernChoiceButton}"
                                         Clicked="gen_Clicked">
                                 </Button>
-                                <Label Text="Explorez par génération (I à IX)" 
+                                <Label Text="Explorer par génération (I à IX)" 
                                        Style="{StaticResource ChoiceDescription}"/>
                             </StackLayout>
 

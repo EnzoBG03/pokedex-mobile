@@ -1,7 +1,10 @@
-﻿using AppPokedex.RecherchePages;
+﻿using AppPokedex.Classes;
+using AppPokedex.RecherchePages;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,11 +17,20 @@ namespace AppPokedex
     public partial class ChoicesPage : ContentPage
     {
         private bool isSystemActive = true;
+        private HttpClient _httpClient;
 
         public ChoicesPage()
         {
             InitializeComponent();
+            InitializeHttpClient();
             InitializeStatusUpdates();
+        }
+
+        private void InitializeHttpClient()
+        {
+            _httpClient?.Dispose();
+            _httpClient = new HttpClient();
+            _httpClient.Timeout = TimeSpan.FromSeconds(30);
         }
 
         private void InitializeStatusUpdates()
@@ -130,6 +142,36 @@ namespace AppPokedex
         {
             isSystemActive = false;
             base.OnDisappearing();
+        }
+
+        private async void rand_Clicked(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            int id = random.Next(1, 1026);
+
+            // Vérifier que l'HttpClient n'est pas null ou disposé
+            if (_httpClient == null)
+            {
+                InitializeHttpClient();
+            }
+
+            // Appel à l'API Tyradex pour récupérer un Pokémon sélectionné aléatoirement
+            string apiUrl = $"https://tyradex.vercel.app/api/v1/pokemon/{id}";
+
+            var response = await _httpClient.GetAsync(apiUrl);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonResponse = await response.Content.ReadAsStringAsync();
+                var pokemon = JsonConvert.DeserializeObject<Pokemon>(jsonResponse);
+
+                // Navigation vers la page de détails
+                await Navigation.PushAsync(new PokemonDetailPage(pokemon));
+            }
+            else
+            {
+                await DisplayAlert("Erreur lors de la recherche", "Aucun Pokémon n'a pu être sélectionné", "OK");
+            }
         }
     }
 }
