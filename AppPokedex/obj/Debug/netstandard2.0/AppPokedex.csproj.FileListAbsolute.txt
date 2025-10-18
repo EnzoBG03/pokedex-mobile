@@ -21,3 +21,4 @@ C:\Users\enzob\OneDrive\Bureau\Fichiers de code\AppPokedex\AppPokedex\obj\Debug\
 C:\Users\enzob\OneDrive\Bureau\Fichiers de code\AppPokedex\AppPokedex\obj\Debug\netstandard2.0\AppPokedex.dll
 C:\Users\enzob\OneDrive\Bureau\Fichiers de code\AppPokedex\AppPokedex\obj\Debug\netstandard2.0\refint\AppPokedex.dll
 C:\Users\enzob\OneDrive\Bureau\Fichiers de code\AppPokedex\AppPokedex\obj\Debug\netstandard2.0\AppPokedex.pdb
+C:\Users\enzob\OneDrive\Bureau\Fichiers de code\AppPokedex\AppPokedex\obj\Debug\netstandard2.0\RecherchePages\DailyPage.xaml.g.cs

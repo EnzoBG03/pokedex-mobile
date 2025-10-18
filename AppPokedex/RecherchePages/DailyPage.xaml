@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppPokedex.RecherchePages.DailyPage"
+             BackgroundColor="#DC143C">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="SubtitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="#FFD700" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontAttributes" Value="Italic" />
+            </Style>
+
+            <Style x:Key="PokemonNameStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="28" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#2F4F4F" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="ActionButton" TargetType="Button">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" Value="25" />
+                <Setter Property="HeightRequest" Value="55" />
+                <Setter Property="Margin" Value="20,10" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <!-- Background avec gradient -->
+            <BoxView>
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#DC143C" Offset="0.0" />
+                        <GradientStop Color="#B22222" Offset="0.4" />
+                        <GradientStop Color="#4169E1" Offset="0.8" />
+                        <GradientStop Color="#F5F5DC" Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+
+            <!-- Contenu principal avec ScrollView -->
+            <ScrollView>
+                <StackLayout Padding="25" Spacing="20">
+
+                    <!-- En-tête avec date -->
+                    <Frame BackgroundColor="Transparent" 
+                           BorderColor="White"
+                           CornerRadius="25"
+                           Padding="20"
+                           Margin="0,20,0,10">
+
+                        <StackLayout>
+                            <Label x:Name="DateLabel" 
+                                   Style="{StaticResource TitleStyle}"
+                                   Margin="0,0,0,5" />
+
+                            <Label Text="POKÉMON DU JOUR" 
+                                   Style="{StaticResource TitleStyle}"
+                                   TextColor="#FFD700" />
+
+                            <Label Text="Découvrez le Pokémon sélectionné pour aujourd'hui !" 
+                                   Style="{StaticResource SubtitleStyle}"
+                                   Margin="0,5,0,0" />
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Carte Pokémon du jour -->
+                    <Frame x:Name="PokemonCard"
+                           BackgroundColor="#F5F5DC" 
+                           CornerRadius="30" 
+                           Padding="30"
+                           HasShadow="True"
+                           BorderColor="#E0E0E0"
+                           MinimumHeightRequest="400">
+
+                        <StackLayout Spacing="20" VerticalOptions="Center">
+                            <!-- Indicateur de chargement -->
+                            <ActivityIndicator x:Name="LoadingIndicator" 
+                                              IsRunning="True" 
+                                              Color="#4169E1"
+                                              Scale="1.5" />
+
+                            <!-- Contenu Pokémon (initialement caché) -->
+                            <StackLayout x:Name="PokemonContent" 
+                                        IsVisible="False"
+                                        Spacing="15">
+
+                                <!-- Image du Pokémon -->
+                                <Frame BackgroundColor="White"
+                                       CornerRadius="20"
+                                       Padding="20"
+                                       HasShadow="True"
+                                       HorizontalOptions="Center">
+                                    <Image x:Name="PokemonImage" 
+                                           WidthRequest="200"
+                                           HeightRequest="200"
+                                           Aspect="AspectFit" />
+                                </Frame>
+
+                                <!-- Numéro du Pokédex -->
+                                <Label x:Name="PokemonNumber" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold"
+                                       TextColor="#696969"
+                                       HorizontalOptions="Center"
+                                       HorizontalTextAlignment="Center" />
+
+                                <!-- Nom du Pokémon -->
+                                <Label x:Name="PokemonName" 
+                                       Style="{StaticResource PokemonNameStyle}" />
+
+                                <!-- Types du Pokémon -->
+                                <StackLayout x:Name="TypesContainer"
+                                           Orientation="Horizontal"
+                                           HorizontalOptions="Center"
+                                           Spacing="10" />
+
+                                <!-- Description courte -->
+                                <Label x:Name="PokemonDescription" 
+                                       FontSize="14"
+                                       TextColor="#696969"
+                                       HorizontalOptions="Center"
+                                       HorizontalTextAlignment="Center"
+                                       Margin="10,15,10,0" />
+
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Boutons d'action -->
+                    <StackLayout x:Name="ActionButtons" 
+                                IsVisible="False"
+                                Spacing="10">
+
+                        <Button x:Name="ViewDetailsButton"
+                                Text="📋 VOIR LA FICHE DÉTAILLÉE" 
+                                BackgroundColor="#4ECDC4"
+                                Style="{StaticResource ActionButton}"
+                                Clicked="OnViewDetailsClicked" />
+
+                        <!--<Button x:Name="ShareButton"
+                                Text="📤 PARTAGER LE POKÉMON DU JOUR" 
+                                BackgroundColor="#FF6B35"
+                                Style="{StaticResource ActionButton}"
+                                Clicked="OnShareClicked" />-->
+                    </StackLayout>
+
+                    <!-- Informations supplémentaires -->
+                    <Frame BackgroundColor="#2F4F4F" 
+                           CornerRadius="20" 
+                           Padding="20"
+                           HasShadow="True"
+                           BorderColor="#1C3A3A">
+
+                        <StackLayout Orientation="Horizontal" 
+                                    HorizontalOptions="Center"
+                                    Spacing="30">
+
+                            <StackLayout HorizontalOptions="Center" Spacing="5">
+                                <Label Text="📅" FontSize="18" HorizontalOptions="Center" />
+                                <Label Text="Quotidien" 
+                                       FontSize="11" 
+                                       FontAttributes="Bold"
+                                       TextColor="#FFD700"
+                                       HorizontalOptions="Center" />
+                            </StackLayout>
+
+                            <BoxView WidthRequest="2" 
+                                     BackgroundColor="#FFD700" 
+                                     Opacity="0.5" />
+
+                            <StackLayout HorizontalOptions="Center" Spacing="5">
+                                <Label Text="🎲" FontSize="18" HorizontalOptions="Center" />
+                                <Label Text="Aléatoire" 
+                                       FontSize="11" 
+                                       FontAttributes="Bold"
+                                       TextColor="#FFD700"
+                                       HorizontalOptions="Center" />
+                            </StackLayout>
+
+                            <BoxView WidthRequest="2" 
+                                     BackgroundColor="#FFD700" 
+                                     Opacity="0.5" />
+
+                            <StackLayout HorizontalOptions="Center" Spacing="5">
+                                <Label Text="🔄" FontSize="18" HorizontalOptions="Center" />
+                                <Label Text="Renouvelé" 
+                                       FontSize="11" 
+                                       FontAttributes="Bold"
+                                       TextColor="#FFD700"
+                                       HorizontalOptions="Center" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Bouton retour -->
+                    <Button x:Name="ReturnButton"
+                            Text="← RETOUR" 
+                            BackgroundColor="#696969"
+                            Style="{StaticResource ActionButton}"
+                            Margin="20,10,20,30"
+                            Clicked="OnReturnClicked" />
+
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -141,6 +141,18 @@
                                      Opacity="0.6"
                                      Margin="0,0,0,15" />
 
+                            <!-- Bouton "Pokémon du Jour" -->
+                            <StackLayout>
+                                <Button x:Name="dailyPokemon" 
+                                        Text="🌟 POKÉMON DU JOUR" 
+                                        BackgroundColor="#FFD700"
+                                        Style="{StaticResource ModernChoiceButton}"
+                                        Clicked="dailyPokemon_Clicked">
+                                </Button>
+                                <Label Text="Le Pokémon spécialement sélectionné pour aujourd'hui" 
+                                       Style="{StaticResource ChoiceDescription}"/>
+                            </StackLayout>
+
                             <!-- Bouton "Tous les Pokémon" avec gradient -->
                             <StackLayout>
                                 <Button x:Name="all" 

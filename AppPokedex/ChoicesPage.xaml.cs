@@ -57,6 +57,12 @@ namespace AppPokedex
             });
         }
 
+        private async void dailyPokemon_Clicked(object sender, EventArgs e)
+        {
+            await AnimateButtonClick(sender as Button);
+            await Navigation.PushAsync(new DailyPage());
+        }
+
         private async void all_Clicked(object sender, EventArgs e)
         {
             await AnimateButtonClick(sender as Button);
