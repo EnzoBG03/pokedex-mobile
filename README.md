@@ -19,6 +19,7 @@ Pour installer l'APK de l'application, veillez à autoriser l'installation prove
 Les contributions à ce projet sont les bienvenues. N'hésitez pas à forker le projet et à soumettre vos pull requests.
 
 ## Versions
+- v1.2.0 : Ajout des cris et de thèmes spéciaux selon le(s) type(s)
 - v1.1.1 : Création d'un concept de Pokémon du jour
 - v1.1.0 : Ajout d'une fonctionnalité de recherche aléatoire et résolution de bugs
 - v1.0.1 : Changement du visuel des types du Pokémon
