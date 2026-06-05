@@ -71,7 +71,7 @@ namespace AppPokedex.RecherchePages
                     InitializeHttpClient();
                 }
 
-                string apiUrl = $"https://tyradex.vercel.app/api/v1/pokemon/{pokemonId}";
+                string apiUrl = $"https://tyradex.app/api/v1/pokemon/{pokemonId}";
                 var response = await _httpClient.GetAsync(apiUrl);
 
                 if (response.IsSuccessStatusCode)

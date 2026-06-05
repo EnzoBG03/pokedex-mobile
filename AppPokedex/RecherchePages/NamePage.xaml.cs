@@ -800,7 +800,7 @@ namespace AppPokedex.RecherchePages
                 {
                     try
                     {
-                        string apiUrl = $"https://tyradex.vercel.app/api/v1/pokemon/{Uri.EscapeDataString(strategy)}";
+                        string apiUrl = $"https://tyradex.app/api/v1/pokemon/{Uri.EscapeDataString(strategy)}";
                         System.Diagnostics.Debug.WriteLine($"Tentative avec: '{strategy}' -> URL: {apiUrl}");
 
                         var response = await _httpClient.GetAsync(apiUrl);

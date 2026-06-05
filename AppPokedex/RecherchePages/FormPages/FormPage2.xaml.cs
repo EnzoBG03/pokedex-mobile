@@ -176,7 +176,7 @@ namespace AppPokedex.RecherchePages.FormPages
                 _httpClient.Timeout = TimeSpan.FromSeconds(45);
 
                 // Étape 1: Récupérer la liste de tous les Pokémon pour identifier ceux avec des formes régionales
-                string apiUrl = "https://tyradex.vercel.app/api/v1/pokemon";
+                string apiUrl = "https://tyradex.app/api/v1/pokemon";
                 string jsonResponse = await _httpClient.GetStringAsync(apiUrl);
                 var allPokemon = JsonConvert.DeserializeObject<List<Pokemon>>(jsonResponse);
 
@@ -248,7 +248,7 @@ namespace AppPokedex.RecherchePages.FormPages
                     });
 
                     // Construire l'URL pour la forme régionale
-                    // Format: https://tyradex.vercel.app/api/v1/pokemon/{nom}/{région}
+                    // Format: https://tyradex.app/api/v1/pokemon/{nom}/{région}
                     string pokemonName = basePokemon.name?.en?.ToLower().Replace(" ", "") ??
                                         basePokemon.name?.fr?.ToLower().Replace(" ", "");
 
@@ -258,7 +258,7 @@ namespace AppPokedex.RecherchePages.FormPages
                         continue;
                     }
 
-                    string regionalFormUrl = $"https://tyradex.vercel.app/api/v1/pokemon/{pokemonName}/{formeName}";
+                    string regionalFormUrl = $"https://tyradex.app/api/v1/pokemon/{pokemonName}/{formeName}";
 
                     System.Diagnostics.Debug.WriteLine($"Tentative de chargement: {regionalFormUrl}");
 
@@ -292,7 +292,7 @@ namespace AppPokedex.RecherchePages.FormPages
                             string frenchName = basePokemon.name?.fr?.ToLower().Replace(" ", "");
                             if (!string.IsNullOrEmpty(frenchName))
                             {
-                                string alternativeUrl = $"https://tyradex.vercel.app/api/v1/pokemon/{frenchName}/{formeName}";
+                                string alternativeUrl = $"https://tyradex.app/api/v1/pokemon/{frenchName}/{formeName}";
                                 string alternativeResponse = await _httpClient.GetStringAsync(alternativeUrl);
                                 var regionalPokemon = JsonConvert.DeserializeObject<Pokemon>(alternativeResponse);
 

@@ -38,7 +38,7 @@ namespace AppPokedex.RecherchePages
                 PokemonCollectionView.IsVisible = false;
 
                 // Appel à l'API Tyradex pour récupérer tous les Pokémon
-                string apiUrl = "https://tyradex.vercel.app/api/v1/pokemon";
+                string apiUrl = "https://tyradex.app/api/v1/pokemon";
                 string jsonResponse = await _httpClient.GetStringAsync(apiUrl);
 
                 var pokemonList = JsonConvert.DeserializeObject<List<Pokemon>>(jsonResponse);

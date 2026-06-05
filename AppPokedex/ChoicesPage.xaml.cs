@@ -162,7 +162,7 @@ namespace AppPokedex
             }
 
             // Appel à l'API Tyradex pour récupérer un Pokémon sélectionné aléatoirement
-            string apiUrl = $"https://tyradex.vercel.app/api/v1/pokemon/{id}";
+            string apiUrl = $"https://tyradex.app/api/v1/pokemon/{id}";
 
             var response = await _httpClient.GetAsync(apiUrl);
 
